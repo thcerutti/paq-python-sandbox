@@ -1,4 +1,5 @@
 from flask import Flask
+from markupsafe import escape
 
 app = Flask(__name__)
 
@@ -6,7 +7,7 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route("/hello")
-def hello():
-    result = 3+4
-    return f"<p>Hello from /hello route. 3+4={result}</p>"
+@app.route("/hello/<name>")
+def hello(name):
+    result = 3+4+1
+    return f"<p>Hello from /hello route. 3+4={result}, {escape(name)}!</p>"

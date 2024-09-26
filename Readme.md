@@ -6,4 +6,4 @@
 
 A partir da raiz do projeto, executar o comando:
 
-- `flask --app hello run`
+- `flask --app hello run --debug`
