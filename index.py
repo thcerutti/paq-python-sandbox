@@ -21,3 +21,17 @@ def soma(num1, num2):
         "segundo_valor": num2,
         "resultado": resultado
     }
+
+def ler_arquivo(path):
+    with open(path, "r") as file:
+        return file.read()
+
+@app.route("/desmatamento/<int:ano>")
+def desmatamento(ano):
+    path = "desmatamento_prodes.csv"
+    dados = ler_arquivo(path)
+    return {
+        "ano": ano,
+        "dados": dados
+    }
+
