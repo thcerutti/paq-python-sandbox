@@ -46,10 +46,10 @@ def carregarDadosDoArquivo(path):
 
 @app.route("/desmatamento/<int:ano>")
 def desmatamento(ano):
-    dados = carregarDadosDoArquivo("desmatamento_prodes.csv")
-    for dado in dados:
-        if int(dado["referencia"]) == ano:
-            return dado
+    tabelaDeDados = carregarDadosDoArquivo("desmatamento_prodes.csv")
+    for linha in tabelaDeDados:
+        if int(linha["referencia"]) == ano:
+            return linha
     return {"erro": "Não encontrado"}, 404
 
 @app.route("/desmatamento/")

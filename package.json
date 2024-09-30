@@ -1,0 +1,12 @@
+{
+  "name": "paq-python-sandbox",
+  "version": "1.0.0",
+  "description": "- https://flask.palletsprojects.com/en/3.0.x/quickstart/#a-minimal-application",
+  "main": "index.js",
+  "scripts": {
+    "debug": " flask --app index run --debug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
