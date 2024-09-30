@@ -55,3 +55,43 @@ def desmatamento(ano):
 def desmatamento_total():
     return carregarDadosDoArquivo("desmatamento_prodes.csv")
 
+@app.route("/meu-primeiro-post", methods=["POST"])
+def meu_primeiro_post():
+    return {"mensagem": "Olá, mundo!"}
+
+@app.route("/loop-for")
+def loop_for():
+    lista = []
+    for i in range(10):
+        lista.append(i)
+    return {"lista": lista}
+
+@app.route("/loop-while")
+def loop_while():
+    lista = []
+    i = 0
+    while i < 15:
+        lista.append(i)
+        i += 1
+    return {"lista": lista}
+
+@app.route("/loop-while-break")
+def loop_while_break():
+    lista = []
+    i = 0
+    while i < 15:
+        lista.append(i)
+        i += 1
+        if i == 10:
+            break # sai antes do final do loop
+    return {"lista": lista}
+
+@app.route("/par-ou-impar/<int:numero>")
+def par_ou_impar(numero):
+    if numero % 2 == 0:
+        return {"mensagem": "par"}
+    else:
+        return {"mensagem": "ímpar"}
+
+# Exercício de escrita em arquivo .csv
+# criar um arquivo novo, receber um valor via parâmetro e escrever esse valor no arquivo
