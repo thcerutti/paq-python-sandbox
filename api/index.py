@@ -45,7 +45,7 @@ def carregarDadosDoArquivo(path):
 
 @app.route("/desmatamento/<int:ano>")
 def desmatamento(ano):
-    tabelaDeDados = carregarDadosDoArquivo("desmatamento_prodes.csv")
+    tabelaDeDados = carregarDadosDoArquivo("data/desmatamento_prodes.csv")
     for linha in tabelaDeDados:
         if linha["referencia"] == ano:
             return linha
@@ -53,7 +53,7 @@ def desmatamento(ano):
 
 @app.route("/desmatamento/")
 def desmatamento_total():
-    return carregarDadosDoArquivo("desmatamento_prodes.csv")
+    return carregarDadosDoArquivo("data/desmatamento_prodes.csv")
 
 @app.route("/meu-primeiro-post", methods=["POST"])
 def meu_primeiro_post():
