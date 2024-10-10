@@ -13,8 +13,6 @@ mongoDBparams = os.getenv('MONGO_PARAMS')
 fullUrl = f"mongodb+srv://{mongoDBuser}:{mongoDBpassword}@{mongoDBurl}/?{mongoDBparams}"
 print(fullUrl)
 
-# uri = "mongodb+srv://cerutti:iIf3bnKf7G6CA2lD@paq-db.z6n6d.mongodb.net/?retryWrites=true&w=majority&appName=paq-db"
-
 # Create a new client and connect to the server
 client = MongoClient(fullUrl, server_api=ServerApi('1'))
 
@@ -29,9 +27,9 @@ try:
 
     # Example: Print the first movie document
     first_movie = movies_collection.find_one()
-    print(first_movie.get('plot'))
-    print(first_movie)
+    print(f"Plot: {first_movie.get('plot')}")
+    print(f"First movie: {first_movie}")
     print('---------------')
-    print(movies_collection.estimated_document_count())
+    print(f"Movies count: {movies_collection.estimated_document_count()}")
 except Exception as e:
     print(e)
