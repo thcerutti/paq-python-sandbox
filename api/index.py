@@ -1,6 +1,7 @@
 from flask import Flask
 from markupsafe import escape
 import csv
+from my_file import sum
 
 app = Flask(__name__)
 
@@ -19,7 +20,7 @@ def soma(num1, num2):
         "operacao": "soma",
         "primeiro_valor": num1,
         "segundo_valor": num2,
-        "resultado": num1 + num2
+        "resultado": sum(num1, num2)
     }
 
 def carregarDadosDoArquivo(path):

@@ -1,35 +1,11 @@
-import os
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
-
-mongoDBuser = os.getenv('MONGO_USER')
-mongoDBpassword = os.getenv('MONGO_PASSWORD')
-mongoDBurl = os.getenv('MONGO_DB_URL')
-mongoDBparams = os.getenv('MONGO_PARAMS')
-fullUrl = f"mongodb+srv://{mongoDBuser}:{mongoDBpassword}@{mongoDBurl}/?{mongoDBparams}"
-print(fullUrl)
-
-# Create a new client and connect to the server
-client = MongoClient(fullUrl, server_api=ServerApi('1'))
+from db import get_client, ping_db, get_collection
 
 # Send a ping to confirm a successful connection
 try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-
-    # Connect to the sample_mflix database and retrieve the movies collection
-    db = client.sample_mflix
-    movies_collection = db.movies
-
-    # Example: Print the first movie document
-    first_movie = movies_collection.find_one()
-    print(f"Plot: {first_movie.get('plot')}")
-    print(f"First movie: {first_movie}")
-    print('---------------')
-    print(f"Movies count: {movies_collection.estimated_document_count()}")
+    # Create a new client and connect to the server
+    client = get_client() # MongoClient(fullUrl, server_api=ServerApi('1'))
+    ping_db(client)
+    mv = get_collection(client, 'sample_mflix', 'movies')
+    print(mv.find_one())
 except Exception as e:
     print(e)
