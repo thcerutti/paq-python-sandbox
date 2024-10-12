@@ -1,4 +1,4 @@
-from db import get_client, ping_db, get_collection
+from Models.db import get_client, ping_db, get_collection
 
 # Send a ping to confirm a successful connection
 try:

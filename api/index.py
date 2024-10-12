@@ -1,8 +1,8 @@
 from flask import Flask
 from markupsafe import escape
 import csv
-from operations import sum
-from db import get_client, get_collection
+from Models.operations import sum
+from Models.db import get_client, get_collection
 
 app = Flask(__name__)
 
