@@ -2,7 +2,6 @@ from flask import Flask
 from markupsafe import escape
 import csv
 from Models.operations import sum
-from Models.db import get_client, get_collection
 
 app = Flask(__name__)
 
@@ -98,25 +97,12 @@ def par_ou_impar(numero):
 # Exercício de escrita em arquivo .csv
 # criar um arquivo novo, receber um valor via parâmetro e escrever esse valor no arquivo
 
+from Models.movies_repository import get_movies
+
 @app.route("/movies/<int:year>")
 def movies(year):
     try:
-        client = get_client()
-        movie_collection = get_collection(client, "sample_mflix", "movies")
-        all_movies = []
-        for movie in movie_collection.find({"year": year}).limit(10):
-            all_movies.append({
-                "title": movie.get("title", ""),
-                "year": movie.get("year", ""),
-                "plot": movie.get("plot", ""),
-                "cast": movie.get("cast", ""),
-                "directors": movie.get("directors", ""),
-                "genres": movie.get("genres", ""),
-                "runtime": movie.get("runtime", ""),
-                "imdb": movie.get("imdb", ""),
-                "awards": movie.get("awards", ""),
-                "type": movie.get("type", "")
-            })
+        all_movies = get_movies(year, 3)
         return all_movies
     except Exception as e:
         return {"error": str(e)}
