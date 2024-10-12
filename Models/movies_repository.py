@@ -9,9 +9,7 @@ def get_movies(year, limit):
   all_movies = []
   for movie in movie_collection.find({
     "year": year,
-  }
-
-  ).limit(limit):
+  }).limit(limit):
     all_movies.append({
       "title": movie.get("title", ""),
       "year": movie.get("year", ""),

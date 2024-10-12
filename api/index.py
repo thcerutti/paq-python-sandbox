@@ -2,6 +2,7 @@ from flask import Flask
 from markupsafe import escape
 import csv
 from Models.operations import sum
+from Models.movies_repository import get_movies
 
 app = Flask(__name__)
 
@@ -93,11 +94,6 @@ def par_ou_impar(numero):
         return {"mensagem": "par"}
     else:
         return {"mensagem": "ímpar"}
-
-# Exercício de escrita em arquivo .csv
-# criar um arquivo novo, receber um valor via parâmetro e escrever esse valor no arquivo
-
-from Models.movies_repository import get_movies
 
 @app.route("/movies/<int:year>")
 def movies(year):
