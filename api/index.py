@@ -98,7 +98,66 @@ def par_ou_impar(numero):
 @app.route("/movies/<int:year>")
 def movies(year):
     try:
-        all_movies = get_movies(year, 3)
+        all_movies = get_movies(year, 5)
         return all_movies
     except Exception as e:
         return {"error": str(e)}
+
+@app.route("/educandos/")
+def educandos():
+    return [{
+        "nome": "Alice",
+        "email": "alice@paq.com",
+        "insignias": [{
+            "nome": "Python",
+            "nivel": 1,
+            "dataValidacao": "2021-08-01"
+        },
+        {
+            "nome": "HTML",
+            "nivel": 2,
+            "dataValidacao": "2021-08-01"
+        },{
+            "nome": "CSS",
+            "nivel": 3,
+            "dataValidacao": None
+        }],
+        "trilha": "Programação"
+    }, {
+        "nome": "Pedro",
+    }]
+
+@app.route("/insignias/")
+def insignias():
+    return [{
+        "nome": "Python",
+        "trilha": "Programação",
+        "descricao": "Você aprendeu o básico de Python",
+        "niveis": [
+            {
+                "nivel": 1,
+                "requisitos": [
+                    "Leitura de arquivo CSV (Há vários dados no https://www.kaggle.com/datasets).",
+                    "Transformar e utilizar do arquivo tipos primitivos: int, string, lista, tuplas e dicionários.",
+                    "Estruturas condicionais e de repetição (if, else, for, while)",
+                    "Criar métodos",
+                    "Escrita de um arquivo CSV",
+                ],
+            },
+            {
+                "nivel": 2,
+                "requisitos": [
+                    "Conexão e manipulação do banco de dados.",
+                    "Manipulação de strings.",
+                    "Instalação de módulos externos com PiP.",
+                    "Aplicação de paradigma funcional com map, reduce, filter e funções lambda.",
+                ],
+            },
+            {
+                "nivel": 3,
+                "requisitos": [
+                    "Criação de API web com Django e Flask."
+                ],
+            }
+        ]
+    }]
